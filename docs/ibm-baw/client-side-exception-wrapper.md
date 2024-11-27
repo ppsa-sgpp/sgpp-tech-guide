@@ -8,7 +8,7 @@ title: Client-Side Exception Wrapper
 🏷️ **Nome:** O nome desse serviço deve ser o mesmo do serviço encapsulado (sem sufixo SF) + "Wrapper"
 
 ### Diagrama BPMN
-![BPMN](img/client-side-exception-wrapper.png)
+![BPMN](img/client-side-exception-wrapper.svg)
 
 ### Pré requisitos
 Ter um serviço do tipo **Serviço REST no IBM BAW** já criado. Vide [Configuração do Serviço REST no IBM BAW](servicos-rest.md)  

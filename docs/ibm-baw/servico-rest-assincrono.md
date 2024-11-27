@@ -8,7 +8,7 @@ title: Serviço REST Assíncrono
 🏷️ **Nome:** O nome desse serviço deve ser o mesmo do serviço encapsulado + "AS"
 
 ### Diagrama BPMN
-![BPMN](img/servico_rest_assincrono.png)
+![BPMN](img/servico-rest-assincrono.svg)
 
 ### Pré requisitos
 Ter um serviço do tipo **Serviço REST no IBM BAW** já criado. Vide [Configuração do Serviço REST no IBM BAW](servicos-rest.md)  

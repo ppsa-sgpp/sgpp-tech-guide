@@ -7,7 +7,7 @@ title: Serviços REST
 🔧 **Função:** Realizar uma chamada a uma interface backend  
 
 ### Diagrama BPMN
-![BPMN](img/servico-rest-bpmn.jpeg)
+![BPMN](img/servico-rest.svg)
 
 ## Etapas de execução
 
