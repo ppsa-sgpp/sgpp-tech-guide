@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Heading from '@theme/Heading';
 import { Redirect } from '@docusaurus/router';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 import styles from './index.module.css';
 
@@ -20,5 +21,7 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  return <Redirect to="/docs/intro" />;
+  const baseUrl = useBaseUrl('/docs/intro');
+  console.log('Base URL utilizado para redirecionamento:', baseUrl);
+  return <Redirect to={baseUrl} />;
 }
