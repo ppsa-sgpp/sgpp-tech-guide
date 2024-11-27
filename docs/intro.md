@@ -5,10 +5,6 @@ sidebar_position: 1
 # Documentação
 <!-- Documentação da arquitetura e padrões de desenvolvimento do sistema SGPP.   -->
 
-<div style={{ textAlign: 'center' }}>
-  <img src="@site/static/img/logo.svg" alt="Logo" width="300" />
-</div>
-
 ### Elmentos de Construção
 #### IBM BAW
 -   [Configuração do Serviço REST](docs/ibm-baw/servicos-rest.md)
