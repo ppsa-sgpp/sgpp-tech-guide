@@ -28,7 +28,7 @@ export default {
         "docs": {
           "routeBasePath": "docs",
           "sidebarPath": "./sidebars.ts",
-          "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide"
+          "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide/edit/main/"
         },
         "theme": {
           "customCss": "./src/css/custom.css"
