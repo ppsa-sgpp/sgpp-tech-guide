@@ -3,3 +3,6 @@ node_modules
 
 # Arquivos gerados
 build/
+
+# Ignorar a pasta .docusaurus
+.docusaurus/
