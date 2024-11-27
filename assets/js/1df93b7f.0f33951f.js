@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksgpp_tech_guide=self.webpackChunksgpp_tech_guide||[]).push([[583],{8198:(e,s,t)=>{t.r(s),t.d(s,{default:()=>c});t(4586),t(1107);var u=t(6347);var r=t(4848);function c(){return(0,r.jsx)(u.rd,{to:"/docs/intro"})}}}]);
