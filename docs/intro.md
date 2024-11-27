@@ -6,7 +6,7 @@ sidebar_position: 1
 <!-- Documentação da arquitetura e padrões de desenvolvimento do sistema SGPP.   -->
 
 <div style={{ textAlign: 'center' }}>
-  <img src="/img/logo.svg" alt="Logo" width="300" />
+  <img src="@site/static/img/logo.svg" alt="Logo" width="300" />
 </div>
 
 ### Elmentos de Construção
