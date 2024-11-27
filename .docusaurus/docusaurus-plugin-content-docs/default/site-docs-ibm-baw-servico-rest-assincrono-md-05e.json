@@ -1,0 +1,26 @@
+{
+  "id": "ibm-baw/servico_rest_assincrono",
+  "title": "Serviço REST Assíncrono",
+  "description": "🔍️ Local de criação: IBM BAW",
+  "source": "@site/docs/ibm-baw/servico_rest_assincrono.md",
+  "sourceDirName": "ibm-baw",
+  "slug": "/ibm-baw/servico_rest_assincrono",
+  "permalink": "/docs/ibm-baw/servico_rest_assincrono",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide/docs/ibm-baw/servico_rest_assincrono.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Serviço REST Assíncrono"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Serviços REST",
+    "permalink": "/docs/ibm-baw/servicos-rest"
+  },
+  "next": {
+    "title": "Client-Side Exception Wrapper",
+    "permalink": "/docs/ibm-baw/client-side-exception-wrapper"
+  }
+}

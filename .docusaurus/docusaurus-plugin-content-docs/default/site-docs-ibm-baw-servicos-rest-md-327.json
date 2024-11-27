@@ -1,0 +1,26 @@
+{
+  "id": "ibm-baw/servicos-rest",
+  "title": "Serviços REST",
+  "description": "🔍️ Local de criação: IBM BAW",
+  "source": "@site/docs/ibm-baw/servicos-rest.md",
+  "sourceDirName": "ibm-baw",
+  "slug": "/ibm-baw/servicos-rest",
+  "permalink": "/sgpp-tech-guide/docs/ibm-baw/servicos-rest",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide/docs/ibm-baw/servicos-rest.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Serviços REST"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Documentação",
+    "permalink": "/sgpp-tech-guide/docs/intro"
+  },
+  "next": {
+    "title": "Serviço REST Assíncrono",
+    "permalink": "/sgpp-tech-guide/docs/ibm-baw/servico-rest-assincrono"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "building-blocks",
+  "title": "building-blocks",
+  "description": "",
+  "source": "@site/docs/building-blocks.md",
+  "sourceDirName": ".",
+  "slug": "/building-blocks",
+  "permalink": "/docs/building-blocks",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/building-blocks.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar"
+}

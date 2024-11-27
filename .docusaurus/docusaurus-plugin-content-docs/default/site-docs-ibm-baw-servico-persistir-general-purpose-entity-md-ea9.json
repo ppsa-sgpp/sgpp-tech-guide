@@ -1,0 +1,26 @@
+{
+  "id": "ibm-baw/servico_persistir_general_purpose_entity",
+  "title": "Serviços de Persistência via General Purpose Entity",
+  "description": "🔍️ Local de criação: IBM BAW",
+  "source": "@site/docs/ibm-baw/servico_persistir_general_purpose_entity.md",
+  "sourceDirName": "ibm-baw",
+  "slug": "/ibm-baw/servico_persistir_general_purpose_entity",
+  "permalink": "/docs/ibm-baw/servico_persistir_general_purpose_entity",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide/docs/ibm-baw/servico_persistir_general_purpose_entity.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Serviços de Persistência via General Purpose Entity"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Client-Side Exception Wrapper",
+    "permalink": "/docs/ibm-baw/client-side-exception-wrapper"
+  },
+  "next": {
+    "title": "Criação de planilha a partir de classe POJO",
+    "permalink": "/docs/sgpp-services/servico_criacao_planilha_classe"
+  }
+}

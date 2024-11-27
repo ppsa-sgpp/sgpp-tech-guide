@@ -1,0 +1,22 @@
+{
+  "id": "sgpp-services/servico_criacao_planilha_classe",
+  "title": "Criação de planilha a partir de classe POJO",
+  "description": "🔍️ Local de criação: sgpp-services",
+  "source": "@site/docs/sgpp-services/servico_criacao_planilha_classe.md",
+  "sourceDirName": "sgpp-services",
+  "slug": "/sgpp-services/servico_criacao_planilha_classe",
+  "permalink": "/sgpp-tech-guide/docs/sgpp-services/servico_criacao_planilha_classe",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide/docs/sgpp-services/servico_criacao_planilha_classe.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Criação de planilha a partir de classe POJO"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Serviços de Persistência via General Purpose Entity",
+    "permalink": "/sgpp-tech-guide/docs/ibm-baw/servico-persistir-general-purpose-entity"
+  }
+}

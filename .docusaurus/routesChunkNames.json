@@ -1,0 +1,253 @@
+{
+  "/sgpp-tech-guide/blog-bbe": {
+    "__comp": "a6aa9e1f",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "f4f34a3a"
+      },
+      {
+        "content": "8717b14a"
+      },
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "__props": "78a91dde"
+  },
+  "/sgpp-tech-guide/blog/archive-dd5": {
+    "__comp": "9e4087bc",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "__props": "5bd3a558"
+  },
+  "/sgpp-tech-guide/blog/authors-ae8": {
+    "__comp": "621db11d",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "__props": "b8460e56"
+  },
+  "/sgpp-tech-guide/blog/authors/all-sebastien-lorber-articles-ba7": {
+    "__comp": "33fc5bb8",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "f4f34a3a"
+      },
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "sidebar": "814f3328",
+    "__props": "9797679e"
+  },
+  "/sgpp-tech-guide/blog/authors/yangshun-73d": {
+    "__comp": "33fc5bb8",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "8717b14a"
+      },
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "sidebar": "814f3328",
+    "__props": "247dfe2a"
+  },
+  "/sgpp-tech-guide/blog/first-blog-post-caf": {
+    "__comp": "ccc49370",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "content": "e273c56f"
+  },
+  "/sgpp-tech-guide/blog/long-blog-post-b7e": {
+    "__comp": "ccc49370",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "content": "73664a40"
+  },
+  "/sgpp-tech-guide/blog/mdx-blog-post-3de": {
+    "__comp": "ccc49370",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "content": "59362658"
+  },
+  "/sgpp-tech-guide/blog/tags-16f": {
+    "__comp": "01a85c17",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "__props": "cffec1e4"
+  },
+  "/sgpp-tech-guide/blog/tags/docusaurus-0b6": {
+    "__comp": "6875c492",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "f4f34a3a"
+      },
+      {
+        "content": "8717b14a"
+      },
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "__props": "74f24684"
+  },
+  "/sgpp-tech-guide/blog/tags/facebook-56f": {
+    "__comp": "6875c492",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      }
+    ],
+    "__props": "a39cb474"
+  },
+  "/sgpp-tech-guide/blog/tags/hello-3fd": {
+    "__comp": "6875c492",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "7661071f"
+      },
+      {
+        "content": "8717b14a"
+      }
+    ],
+    "__props": "edbed816"
+  },
+  "/sgpp-tech-guide/blog/tags/hola-d5b": {
+    "__comp": "6875c492",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "items": [
+      {
+        "content": "925b3f96"
+      }
+    ],
+    "__props": "f9bed445"
+  },
+  "/sgpp-tech-guide/blog/welcome-f8b": {
+    "__comp": "ccc49370",
+    "__context": {
+      "data": {
+        "blogMetadata": "acecf23e"
+      },
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "content": "d9f32620"
+  },
+  "/sgpp-tech-guide/markdown-page-064": {
+    "__comp": "1f391b9e",
+    "__context": {
+      "plugin": "a7456010"
+    },
+    "content": "393be207"
+  },
+  "/sgpp-tech-guide/docs-f75": {
+    "__comp": "5e95c892",
+    "__context": {
+      "plugin": "aba21aa0"
+    }
+  },
+  "/sgpp-tech-guide/docs-8ea": {
+    "__comp": "a7bd4aaa",
+    "__props": "08b21822"
+  },
+  "/sgpp-tech-guide/docs-4d5": {
+    "__comp": "a94703ab"
+  },
+  "/sgpp-tech-guide/docs/ibm-baw/client-side-exception-wrapper-5c5": {
+    "__comp": "17896441",
+    "content": "63caf719"
+  },
+  "/sgpp-tech-guide/docs/ibm-baw/servico-persistir-general-purpose-entity-1bb": {
+    "__comp": "17896441",
+    "content": "1d8a4c23"
+  },
+  "/sgpp-tech-guide/docs/ibm-baw/servico-rest-assincrono-48e": {
+    "__comp": "17896441",
+    "content": "67b96f5a"
+  },
+  "/sgpp-tech-guide/docs/ibm-baw/servicos-rest-918": {
+    "__comp": "17896441",
+    "content": "327cb945"
+  },
+  "/sgpp-tech-guide/docs/intro-a4b": {
+    "__comp": "17896441",
+    "content": "0e384e19"
+  },
+  "/sgpp-tech-guide/docs/sgpp-services/servico_criacao_planilha_classe-dfb": {
+    "__comp": "17896441",
+    "content": "513c12d0"
+  },
+  "/sgpp-tech-guide/-69e": {
+    "__comp": "1df93b7f",
+    "__context": {
+      "plugin": "a7456010"
+    },
+    "config": "5e9f5e1a"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "intro",
+  "title": "Documentação",
+  "description": "Elmentos de Construção",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/sgpp-tech-guide/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/ppsa-sgpp/sgpp-tech-guide/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Serviços REST",
+    "permalink": "/sgpp-tech-guide/docs/ibm-baw/servicos-rest"
+  }
+}

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksgpp_tech_guide=self.webpackChunksgpp_tech_guide||[]).push([[926],{9330:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/sgpp-tech-guide/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
