@@ -47,6 +47,13 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Guias de Estilo',
+      items: [
+        'guia-estilo/java'
+      ]
+    }
   ],
 };
 
