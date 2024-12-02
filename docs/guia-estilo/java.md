@@ -97,7 +97,7 @@ Se as informações de licença ou direitos autorais pertencerem a um arquivo, e
 
 ### 3.2 Declaração do pacote
 
-A instrução package **não é quebrada em linha** . O limite de coluna (Seção 4.4, [Limite de coluna: 100] não se aplica a instruções de pacote.
+A instrução package **não é quebrada em linha** . O limite de coluna (Seção 4.4, [Limite de coluna: 120] não se aplica a instruções de pacote.
 
 ### 3.3 Declarações de importação
 
@@ -221,7 +221,7 @@ Cada vez que um novo bloco ou construção semelhante a um bloco é aberto, o re
 
 Cada instrução é seguida por uma quebra de linha.
 
-### 4.4 Limite de coluna: 100
+### 4.4 Limite de coluna: 120
 
 O código Java tem um limite de coluna de 100 caracteres. Um "caractere" significa qualquer ponto de código Unicode. Exceto conforme indicado abaixo, qualquer linha que exceda esse limite deverá ser quebrada, conforme explicado na Seção 4.5, [Quebra de linha] .
 
