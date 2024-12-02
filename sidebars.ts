@@ -26,10 +26,10 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
           type: 'category',
           label: 'IBM BAW',
           items: [
-            'ibm-baw/servicos-rest',
-            'ibm-baw/servico-rest-assincrono',
-            'ibm-baw/client-side-exception-wrapper',
-            'ibm-baw/servico-persistir-general-purpose-entity'
+            'building-blocks/ibm-baw/servicos-rest',
+            'building-blocks/ibm-baw/servico-rest-assincrono',
+            'building-blocks/ibm-baw/client-side-exception-wrapper',
+            'building-blocks/ibm-baw/servico-persistir-general-purpose-entity'
           ],
         },
         {
@@ -40,7 +40,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
               type: 'category',
               label: 'SGPP Services',
               items: [
-                'sgpp-services/servico_criacao_planilha_classe'
+                'building-blocks/sgpp-services/servico_criacao_planilha_classe'
               ],
             }
           ],
