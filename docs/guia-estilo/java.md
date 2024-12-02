@@ -97,7 +97,7 @@ Se as informações de licença ou direitos autorais pertencerem a um arquivo, e
 
 ### 3.2 Declaração do pacote
 
-A instrução package **não é quebrada em linha** . O limite de coluna (Seção 4.4, [Limite de coluna: 100] não se aplica a instruções de pacote.
+A instrução package **não é quebrada em linha** . O limite de coluna (Seção 4.4, [Limite de coluna: 120] não se aplica a instruções de pacote.
 
 ### 3.3 Declarações de importação
 
@@ -107,7 +107,7 @@ A instrução package **não é quebrada em linha** . O limite de coluna (Seçã
 
 #### 3.3.2 Sem quebra de linha
 
-As instruções de importação não são **quebradas em linha** . O limite de colunas (Seção 4.4, [Limite de colunas: 100] não se aplica a instruções de importação.
+As instruções de importação não são **quebradas em linha** . O limite de colunas (Seção 4.4, [Limite de colunas: 120] não se aplica a instruções de importação.
 
 #### 3.3.3 Ordenação e espaçamento
 
@@ -221,9 +221,9 @@ Cada vez que um novo bloco ou construção semelhante a um bloco é aberto, o re
 
 Cada instrução é seguida por uma quebra de linha.
 
-### 4.4 Limite de coluna: 100
+### 4.4 Limite de coluna: 120
 
-O código Java tem um limite de coluna de 100 caracteres. Um "caractere" significa qualquer ponto de código Unicode. Exceto conforme indicado abaixo, qualquer linha que exceda esse limite deverá ser quebrada, conforme explicado na Seção 4.5, [Quebra de linha] .
+O código Java tem um limite de coluna de 120 caracteres. Um "caractere" significa qualquer ponto de código Unicode. Exceto conforme indicado abaixo, qualquer linha que exceda esse limite deverá ser quebrada, conforme explicado na Seção 4.5, [Quebra de linha] .
 
 Cada ponto de código Unicode conta como um caractere, mesmo que sua largura de exibição seja maior ou menor. Por exemplo, se estiver usando [caracteres de largura total](https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms) , você pode optar por quebrar a linha antes do que esta regra exige estritamente.
 
@@ -592,7 +592,7 @@ Cada variável de tipo é nomeada em um dos dois estilos:
 *   Uma única letra maiúscula, opcionalmente seguida por um único número (como `E`, `T`, `X`, `T2`)
 *   Um nome no formato usado para classes (veja Seção 5.2.2, [Nomes de classes].
 
-### 5.3 Caso camelo: definido
+### 5.3 Camel case: definido
 
 Às vezes, há mais de uma maneira razoável de converter uma frase em inglês para camel case, como quando siglas ou construções incomuns como "IPv6" ou "iOS" estão presentes. Para melhorar a previsibilidade, o Google Style especifica o seguinte esquema (quase) determinístico.
 
