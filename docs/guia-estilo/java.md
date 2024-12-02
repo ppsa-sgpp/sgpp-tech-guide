@@ -592,7 +592,7 @@ Cada variável de tipo é nomeada em um dos dois estilos:
 *   Uma única letra maiúscula, opcionalmente seguida por um único número (como `E`, `T`, `X`, `T2`)
 *   Um nome no formato usado para classes (veja Seção 5.2.2, [Nomes de classes].
 
-### 5.3 Caso camelo: definido
+### 5.3 Camel case: definido
 
 Às vezes, há mais de uma maneira razoável de converter uma frase em inglês para camel case, como quando siglas ou construções incomuns como "IPv6" ou "iOS" estão presentes. Para melhorar a previsibilidade, o Google Style especifica o seguinte esquema (quase) determinístico.
 
