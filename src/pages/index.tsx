@@ -1,19 +1,17 @@
+import React from 'react';
+import ProtectedRoute from '../components/ProtectedRoute';
 import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Heading from '@theme/Heading';
+import styles from './index.module.css';
 import { Redirect } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-import styles from './index.module.css';
-
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+function HomepageHeader() {  
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
+        <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
       </div>
     </header>
@@ -22,6 +20,10 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const baseUrl = useBaseUrl('/docs/intro');
-  console.log('Base URL utilizado para redirecionamento:', baseUrl);
-  return <Redirect to={baseUrl} />;
+  return (
+    <ProtectedRoute>
+      <HomepageHeader />
+      <Redirect to={baseUrl} />
+    </ProtectedRoute>
+  );
 }

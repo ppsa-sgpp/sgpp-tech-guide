@@ -8,24 +8,12 @@ const config: Config = {
   title: 'SGPP Docs',
   tagline: 'Documentação do Sistema SGPP',
   favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
   url: 'https://ppsa-sgpp.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/sgpp-tech-guide/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'ppsa-sgpp', // Usually your GitHub org/user name.
-  projectName: 'sgpp-tech-guide', // Usually your repo name.
-
+  organizationName: 'ppsa-sgpp',
+  projectName: 'sgpp-tech-guide',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -38,8 +26,6 @@ const config: Config = {
         docs: {
           routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/ppsa-sgpp/sgpp-tech-guide/edit/main/',
         },
@@ -51,7 +37,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'SGPP',
@@ -62,12 +47,12 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar', // Ajuste para refletir seu sidebar real
+          sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Documentação',
         },
         {
-          href: 'https://github.com/facebook/docusaurus', // Atualize para seu repositório
+          href: 'https://github.com/ppsa-sgpp/sgpp-tech-guide',
           label: 'GitHub',
           position: 'right',
         },
