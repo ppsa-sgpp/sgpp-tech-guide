@@ -107,7 +107,7 @@ A instrução package **não é quebrada em linha** . O limite de coluna (Seçã
 
 #### 3.3.2 Sem quebra de linha
 
-As instruções de importação não são **quebradas em linha** . O limite de colunas (Seção 4.4, [Limite de colunas: 100] não se aplica a instruções de importação.
+As instruções de importação não são **quebradas em linha** . O limite de colunas (Seção 4.4, [Limite de colunas: 120] não se aplica a instruções de importação.
 
 #### 3.3.3 Ordenação e espaçamento
 
