@@ -25,7 +25,7 @@ const config: Config = {
       {
         docs: {
           routeBasePath: 'docs',
-          sidebarPath: './sidebars.ts',
+          sidebarPath: require.resolve('./sidebars.ts'),
           editUrl:
             'https://github.com/ppsa-sgpp/sgpp-tech-guide/edit/main/',
         },
