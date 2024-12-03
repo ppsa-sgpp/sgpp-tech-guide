@@ -13,9 +13,14 @@ jobs:
     - name: Checkout do repositório público
       uses: actions/checkout@v3
 
-    - name: Clonar o repositório confidencial
+    - name: Clonar o repositório confidencial em pasta temporária
       run: |
-        git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-tech-guide-confidential.git docs
+        git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-tech-guide-confidential.git confidential-docs
+
+    - name: Mover arquivos confidenciais para a pasta docs
+      run: |
+        cp -r confidential-docs/* docs/
+        rm -rf confidential-docs
 
     - name: Configurar Node.js
       uses: actions/setup-node@v3
