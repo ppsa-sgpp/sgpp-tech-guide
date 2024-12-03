@@ -1,6 +1,10 @@
 import path from 'path';
-import { buildSidebar } from './buildSidebar'; // Ajuste o caminho conforme necessário
+import { buildIntro } from './introBuilder';
+import { buildSidebar } from './buildSidebar';
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+
+// Cria documento de introdução
+buildIntro();
 
 // Caminho da pasta de documentos
 let docsPath = path.resolve(__dirname, 'docs');
