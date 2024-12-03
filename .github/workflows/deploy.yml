@@ -15,7 +15,7 @@ jobs:
 
     - name: Clonar o repositório confidencial
       run: |
-        git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-tech-guide-confidential.git docs/confidential
+        git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-tech-guide-confidential.git docs
 
     - name: Configurar Node.js
       uses: actions/setup-node@v3
