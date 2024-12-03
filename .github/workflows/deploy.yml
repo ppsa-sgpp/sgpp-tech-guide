@@ -3,27 +3,24 @@ name: Deploy Docusaurus
 on:
   push:
     branches:
-      - main  # Publicar sempre que houver um push no branch `main`
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do repositório
+    - name: Checkout do repositório público
       uses: actions/checkout@v3
+
+    - name: Clonar o repositório confidencial
+      run: |
+        git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-tech-guide-confidential.git docs/confidential
 
     - name: Configurar Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18
-
-    - name: Checkout do Repositório Confidencial
-      uses: actions/checkout@v3
-      with:
-        repository: ppsa-sgpp/sgpp-tech-guide-confidential
-        path: docs/confidential
-        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Instalar dependências
       run: npm ci
