@@ -23,6 +23,12 @@ jobs:
       run: |
         cp -r confidential-docs/* docs/+confidential
         rm -rf confidential-docs
+    
+    - name: Adicionar mensagem de confidencialidade nos arquivos
+      run: |
+        for file in $(find docs/confidential -name '*.md'); do
+          echo '<!--\n⚠️ O conteúdo deste documento destina-se exclusivamente à PPSA, não devendo ser divulgado fora da organização, nem duplicado, usado ou revelado, no todo ou em parte, para qualquer propósito que não seja o de avaliação, uso e acompanhamento dos serviços do qual ele trata.\n-->\n' | cat - "$file" > temp && mv temp "$file"
+        done
 
     - name: Configurar Node.js
       uses: actions/setup-node@v3

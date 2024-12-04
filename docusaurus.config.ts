@@ -26,8 +26,14 @@ const config: Config = {
         docs: {
           routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.ts'),
-          editUrl:
-            'https://github.com/ppsa-sgpp/sgpp-tech-guide/edit/main/',
+          editUrl: ({ docPath }) => {
+            if (docPath.startsWith('+confidential/')) {
+              let confidentialPath = docPath.replace(/^\+confidential\//, '');
+              return `https://github.com/ppsa-sgpp/sgpp-tech-guide-confidential/edit/main/${confidentialPath}`;
+            }
+
+            return `https://github.com/ppsa-sgpp/sgpp-tech-guide/edit/main/docs/${docPath}`;
+          },
         },
         theme: {
           customCss: './src/css/custom.css',
