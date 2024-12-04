@@ -36,8 +36,13 @@ export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
   const categories = entries
     .filter((entry) => entry.isDirectory() && entry.name !== 'img') // Ignora pastas 'img'
     .map((entry) => {
+
       const fullPath = path.join(dirPath, entry.name);
       const relativePath = path.join(basePath, entry.name);
+
+      if (entry.name === '+confidential') {
+        return buildSidebar(fullPath, relativePath);
+      }
 
       const items = buildSidebar(fullPath, relativePath);
 

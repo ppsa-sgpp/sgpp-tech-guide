@@ -21,7 +21,7 @@ jobs:
 
     - name: Mover arquivos confidenciais para a pasta docs
       run: |
-        cp -r confidential-docs/* docs/
+        cp -r confidential-docs/* docs/+confidential
         rm -rf confidential-docs
 
     - name: Configurar Node.js

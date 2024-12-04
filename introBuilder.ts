@@ -39,6 +39,10 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
       const fullPath = path.join(dirPath, entry.name);
       const relativePath = path.join(basePath, entry.name);
 
+      if (entry.name === '+confidential') {
+        return buildMarkdown(fullPath, relativePath);
+      }
+
       const items = buildMarkdown(fullPath, relativePath, level + 1);
 
       if (items) {
