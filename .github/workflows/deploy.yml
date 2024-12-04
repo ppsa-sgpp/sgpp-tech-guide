@@ -32,7 +32,7 @@ jobs:
 
     - name: Criando arquivo intro.md
       run: |
-        touch docs/intro.md
+        echo "#Documentação" > docs/intro.md
 
     - name: Configurar Node.js
       uses: actions/setup-node@v3
