@@ -30,6 +30,10 @@ jobs:
           sed -i '1a > ⚠️ **O conteúdo deste documento destina-se exclusivamente à PPSA, não devendo ser divulgado fora da organização, nem duplicado, usado ou revelado, no todo ou em parte, para qualquer propósito que não seja o de avaliação, uso e acompanhamento dos serviços do qual ele trata.**' "$file"
         done
 
+    - name: Criando arquivo intro.md
+      run: |
+        touch docs/intro.md
+
     - name: Configurar Node.js
       uses: actions/setup-node@v3
       with:
