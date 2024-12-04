@@ -1,6 +1,4 @@
----
-title: Serviços REST
----
+# Serviços REST
 
 🔍️ **Local de criação:** IBM BAW  
 ⌛️ **Tempo estimado:** 8 horas  

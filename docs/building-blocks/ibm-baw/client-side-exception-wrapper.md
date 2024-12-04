@@ -1,6 +1,4 @@
-﻿---
-title: Client-Side Exception Wrapper
----
+﻿# Client-Side Exception Wrapper
 
 🔍️ **Local de criação:** IBM BAW  
 ⌛️ **Tempo estimado:** 1 horas  

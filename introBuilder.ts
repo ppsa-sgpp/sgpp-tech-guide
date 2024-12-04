@@ -19,6 +19,19 @@ function capitalizeWords(str: string): string {
     .join(' ');
 }
 
+// Função para extrair o heading 1 de um arquivo Markdown
+function extractHeading1(filePath: string): string | null {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const normalizedContent = content.replace(/^\uFEFF/, '').trim();
+  const match = normalizedContent.match(/^# (.+)/m);
+  if (match && match[1]) {
+    return match[1].trim();
+  } else {
+    console.log(filePath);
+  }
+  return null;
+}
+
 // Função para construir o Markdown
 function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
@@ -27,9 +40,11 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
   const docsInRoot = entries
     .filter(entry => entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'intro.md')
     .map(entry => {
+      const fullPath = path.join(dirPath, entry.name);
       const relativePath = path.join(basePath, entry.name);
       const fileName = entry.name.replace(/\.md$/, '');
-      return `- [${capitalizeWords(fileName.replace(/-/g, ' '))}](docs/${relativePath})`;
+      const heading = extractHeading1(fullPath) || capitalizeWords(fileName.replace(/-/g, ' '));
+      return `- [${heading}](docs/${relativePath})`;
     });
 
   // Processa as subcategorias

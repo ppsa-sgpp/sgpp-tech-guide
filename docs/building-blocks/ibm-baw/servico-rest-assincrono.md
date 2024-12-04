@@ -1,6 +1,4 @@
-﻿---
-title: Serviço REST Assíncrono
----
+﻿# Serviço REST Assíncrono
 
 🔍️ **Local de criação:** IBM BAW  
 ⌛️ **Tempo estimado:** 2 horas  

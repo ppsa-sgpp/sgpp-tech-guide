@@ -1,6 +1,4 @@
-﻿---
-title: Serviços de Persistência via General Purpose Entity
----
+﻿# Serviços de Persistência via General Purpose Entity
 
 🔍️ **Local de criação:** IBM BAW  
 ⌛️ **Tempo estimado:** 30 minutos  
