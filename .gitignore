@@ -6,3 +6,6 @@ build/
 
 # Ignorar a pasta .docusaurus
 .docusaurus/
+
+# docs/intro.md é autogerado
+docs/intro.md
