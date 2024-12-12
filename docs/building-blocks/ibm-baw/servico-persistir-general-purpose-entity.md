@@ -20,6 +20,7 @@
 
 **Variáveis privadas:** As seguintes variáveis devem ser definidas:
 - **data**  do tipo String
+- **error** do tipo ErrorBO do toolkit TKHE_HandleErrors
 
 ### 2. Adicionar Script de Conversão de tipo de entrada *(etapa condiciona a existir um parâmetro de entrada no serviço)*
 **Nome:** Conversão de Tipo  
