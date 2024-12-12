@@ -5,7 +5,6 @@
 🔧 **Função:** Realizar chamada a serviço de recuperação de objeto General Purpose, que permite recuperar BO definido no IBM BAW sem a necessidade de defini-lo no backend  
 
 ### Diagrama BPMN
-![BPMN](img/servico_persistir_general_purpose_entity.svg)
 
 ## Etapas de execução
 
