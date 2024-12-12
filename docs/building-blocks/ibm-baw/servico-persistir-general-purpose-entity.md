@@ -30,13 +30,7 @@ Esse parâmetro pode ser fatorado em quantos atributos de entrada forem necessá
 
 **Exemplo:**
 ```javascript
-var data = null;
-if (typeof tw.local.data === 'string') {
-    data = tw.local.data;
-} else {
-    data = JSON.stringify(tw.local.data);
-}
-tw.local.data = JSON.parse(data);
+tw.local.data = JSON.stringify(tw.local._variaveDeEntrada_);
 ```
 
 ### 3. Usar Linked Services Persistir Geral Purpose Entity SF do  *toolkit TKISC_IntegracoesSistemicasComuns*
