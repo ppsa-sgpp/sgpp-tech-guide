@@ -17,7 +17,8 @@
 - **serviceName** do tipo String
 - **url** do tipo String
 - **response** do tipo String
-- **error** do tipo ErrorBO definido no toolkit TKHE\_HandleErrors ○errorResponse - do tipo ErrorResponse definido no toolkit *TKISC\_IntegracoesSistemicasComuns*
+- **error** do tipo ErrorBO definido no toolkit TKHE\_HandleErrors
+- **errorResponse** - do tipo ErrorResponse definido no toolkit *TKISC\_IntegracoesSistemicasComuns*
 
 ### 2. Adicionar Componente de Script para Log:
 
