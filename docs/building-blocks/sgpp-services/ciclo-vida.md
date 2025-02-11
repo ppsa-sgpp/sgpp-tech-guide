@@ -4,3 +4,4 @@
 ⌛️ **Tempo estimado:**
 
 ## Estado atual
+![Etapas](img/etapas_ciclo_vida_v4.png)
