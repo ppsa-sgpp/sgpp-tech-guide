@@ -130,7 +130,3 @@ para representar a nova etapa.
 
 📌 **Observação:** Para detalhes sobre versionamento, consulte a documentação interna.
 
----
-
-📝 **Revisão concluída!** O documento foi estruturado para maior clareza e organização.
-
