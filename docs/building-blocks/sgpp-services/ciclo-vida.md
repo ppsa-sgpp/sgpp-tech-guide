@@ -126,3 +126,31 @@ para representar a nova etapa.
 
 ![Etapas](img/etapas_ciclo_vida_v4.png)
 
+### 6. Atualização e Versionamento de Etapas
+
+📄 **Descrição:** Toda etapa deve ser criada em um pacote que expõe a sua versão, por exemplo: `v1_0_0`.
+
+🔹 **Atualizações menores** que não envolvem a alteração dos objetos de _Requisição_ e seus atributos, e que não modificam drasticamente as regras de negócio, podem ser feitas diretamente nas classes desse pacote.
+
+🔹 **Versionamento necessário:** Caso o objeto de _Requisição_ seja alterado ou a regra de negócio sofra mudanças significativas, uma nova versão da etapa deve ser criada.
+
+📦 **Procedimento para versionamento:**
+- Criar um novo pacote que represente a nova versão, por exemplo: `v1_1_0`.
+- Duplicar todas as classes internas da versão anterior.
+- A nova versão **não** deve utilizar classes da versão antiga.
+- Criar uma classe de adaptação que estenda:
+
+  ```java
+  sgpp.ciclovidacco.etapas.adaptacao.AdaptadorEtapaRequisicaoAbstract<ORIGEM, ALVO>
+  ```
+
+- Anotar a classe com (as versões anotadas referem-se à versão anterior e à nova versão, respectivamente):
+  ```java
+  @Adaptacao(versaoOrigem = "1.0.0", versaoAlvo = "2.0.0")
+  ```
+- Implementar o método:
+  ```java
+  sgpp.ciclovidacco.etapas.adaptacao.AdaptadorEtapaRequisicaoAbstract.converter(ORIGEM)
+  ```
+  para realizar a conversão do objeto de _Requisição_ da versão antiga para a nova.
+
