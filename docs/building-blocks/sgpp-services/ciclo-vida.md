@@ -114,7 +114,7 @@ para representar a nova etapa.
 
 ### 5. Atualizar o Diagrama do Estado Atual do Ciclo de Vida de Contas de Custo em Óleo
 
-📄 **Descrição:** Atualizar o [diagrama do ciclo de vida]((img/etapas_ciclo_vida.drawio) e substituir a imagem abaixo:
+📄 **Descrição:** Atualizar o [diagrama do ciclo de vida](img/etapas_ciclo_vida.drawio) e substituir a imagem abaixo:
 
 ![Etapas](img/etapas_ciclo_vida_v4.png)
 
