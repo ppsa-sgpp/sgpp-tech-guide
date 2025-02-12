@@ -19,4 +19,3 @@ O **TKTEMPL_SgppTemplates (TKTEMPL)** é um toolkit de templates de serviços pa
 ✅ Maior aderência às boas práticas de arquitetura.  
 ✅ Facilidade de manutenção e evolução dos serviços.  
 
-Caso haja dúvidas ou necessidades específicas, consulte a documentação detalhada do toolkit ou entre em contato com o time responsável.
