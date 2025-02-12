@@ -49,6 +49,14 @@ sgpp.services.web.rest.EtapaAdicaoOverheadContaCustoOleoResource.executar(...)
 public static [NomeDaClasse] criarEtapa(...)
 ```
 
+#### 2.1. Definir o atributo como vínculo
+📄 **Descrição:** Como o ciclo de vida tem a característica de ser reexecutado, é necessário definir um atributo que carrega as alterações realizadas pela etapa anterior. Para tanto, é necessário identificar esse atributo (que na maior parte das vezes é ou RemessaEntity ou ContaCustoOleoEntity).
+Para realizar esa identificação, a seguinte anotação deve ser adicionada à esse atributo
+```
+@EtapaPreviaVinculo(value = "...", nomeItem = "...")
+```
+Como `value`deve ser passado o FQN da classe enquanto `nomeItem` deve ser passado o nome do atributo conforme ele é na etapa anterior
+
 ---
 
 ### 3. Criar Classe da Etapa
@@ -117,14 +125,4 @@ para representar a nova etapa.
 📄 **Descrição:** Atualizar o [diagrama do ciclo de vida](img/etapas_ciclo_vida.drawio) e substituir a imagem abaixo:
 
 ![Etapas](img/etapas_ciclo_vida_v4.png)
-
----
-
-✅ **Checklist:**
-- [ ] Criar classes conforme descrito.
-- [ ] Implementar o método `executar` com as regras de negócio.
-- [ ] Atualizar o diagrama do ciclo de vida.
-- [ ] Testar a nova etapa.
-
-📌 **Observação:** Para detalhes sobre versionamento, consulte a documentação interna.
 
