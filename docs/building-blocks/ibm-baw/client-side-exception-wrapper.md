@@ -1,5 +1,18 @@
 ﻿# Client-Side Exception Wrapper
 
+> 📢 **Uso de Template no Toolkit TKTEMPL_SgppTemplates (TKTEMPL)**
+> 
+> Este *building block* possui um template disponível no toolkit **TKTEMPL_SgppTemplates (TKTEMPL)**. A menos que existam motivos técnicos ou operacionais razoáveis para uma implementação personalizada, o uso do template é altamente recomendado.
+> 
+> ✅ **Vantagens de utilizar o template:**
+> - Padronização e conformidade com boas práticas.
+> - Manutenção simplificada e suporte contínuo.
+> - Redução de esforço e tempo de desenvolvimento.
+> 
+> Caso haja necessidade de uma implementação alternativa, recomenda-se justificar a decisão e avaliar possíveis impactos.
+> 
+> 🔗 Consulte a documentação do **TKTEMPL_SgppTemplates** para mais detalhes sobre o template disponível.
+
 🔍️ **Local de criação:** IBM BAW  
 ⌛️ **Tempo estimado:** 1 horas  
 🔧 **Função:** Encapsular um serviço já criado em um processo de tratamento de erro client-side
