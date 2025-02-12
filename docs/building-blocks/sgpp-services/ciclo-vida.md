@@ -1,7 +1,7 @@
 # Criação de Etapas do Ciclo de Vida de Contas de Custo em Óleo
 
 🔍️ **Local de criação:** `sgpp-services`  
-⌛️ **Tempo estimado:** [Inserir estimativa]
+⌛️ **Tempo estimado:** 8 horas + tempo para desenvolver regra de negócio + tempo para desenvolver teste unitário da regra de negócio
 
 ---
 
