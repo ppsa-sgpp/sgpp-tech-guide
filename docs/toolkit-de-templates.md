@@ -4,7 +4,7 @@
 O **TKTEMPL_SgppTemplates (TKTEMPL)** é um toolkit de templates de serviços para o **IBM Business Automation Workflow (BAW)**. Ele foi desenvolvido para padronizar e facilitar a criação de serviços, promovendo boas práticas de desenvolvimento e reduzindo o esforço necessário para implementar novas funcionalidades.
 
 ## Como Utilizar
-1. **Duplicação do Template:** O usuário deve **duplicar** o template desejado e copiá-lo para o **ProcessApp** que está sendo desenvolvido.
+1. **Duplicação do Template:** O usuário deve **duplicar** o template desejado e movê-lo para o **ProcessApp** que está sendo desenvolvido. Evite simplesmente copiar, serviços que fazem referências a outros recursos podem perdê-las a serem copiados
 2. **Execução das Etapas:** Dentro do próprio template, existem etapas marcadas na cor **verde**. Essas etapas indicam pontos onde há atividades pendentes que devem ser concluídas para finalizar a criação do serviço.
 3. **Finalização:**
    - Alterar os campos **nome** e **função** no comentário de cabeçalho do serviço.
