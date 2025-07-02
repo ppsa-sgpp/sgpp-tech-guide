@@ -14,7 +14,7 @@
 > 🔗 Consulte a documentação do **TKTEMPL_SgppTemplates** para mais detalhes sobre o template disponível.
 
 🔍️ **Local de criação:** IBM BAW  
-⌛️ **Tempo estimado:** 2 horas  
+⌛️ **Tempo estimado:** 4 horas  
 🔧 **Função:** Encapsular um serviço já criado para utilizá-lo no elemento de Coach *Service call*  
 🏷️ **Nome:** O nome desse serviço deve ser o mesmo do serviço encapsulado + "AS"
 
