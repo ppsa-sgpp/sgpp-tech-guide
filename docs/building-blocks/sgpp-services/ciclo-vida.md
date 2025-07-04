@@ -138,6 +138,7 @@ para representar a nova etapa.
 - Criar um novo pacote que represente a nova versão, por exemplo: `v1_1_0`.
 - Duplicar todas as classes internas da versão anterior.
 - A nova versão **não** deve utilizar classes da versão antiga.
+- O pacote que representa a versão antiga deve ser apagado da base de código (Originalmente era para ser mantido para que se pudesse fazer replay das etapas com eles, mas por conta de organização do código, assume-se que todo replay passará por uma conversão).
 - Criar uma classe de adaptação que estenda:
 
   ```java
