@@ -1,41 +1,81 @@
-# Website
+# SGPP Tech Guide & Architecture
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Este repositório reúne a **documentação técnica** e a **arquitetura oficial** do Sistema de Gestão de Partilha de Produção (SGPP).
 
-### Installation
+Ele combina:
+- O **guia técnico (Tech Guide)** com padrões, building blocks e boas práticas já estabelecidas.
+- O **repositório central de arquitetura**, incluindo:
+  - **ADRs (Architecture Decision Records)** versionados e auditáveis.
+  - **Diagramas de Arquitetura** em Structurizr DSL, PlantUML e BPMN.
+  - Publicação automática em site Docusaurus para consulta navegável.
 
-```
-$ yarn
-```
+---
 
-### Local Development
+## 📚 Estrutura de Conteúdo
 
-```
-$ yarn start
-```
+- **Documentação técnica**  
+  - Documento de Arquitetura  
+  - Building Blocks (IBM BAW, serviços, templates, etc.)  
+  - Definições Arquiteturais  
+  - Style Guides (Java, entre outros)
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+- **Arquitetura**  
+  - `adr/` – Registros de Decisão de Arquitetura  
+  - `diagrams/` – Diagramas em Structurizr DSL, PlantUML e BPMN  
+  - Publicação no Docusaurus em `docs/adr/` e `docs/architecture/`
 
-### Build
+---
 
-```
-$ yarn build
-```
+## 🧭 ADRs (Architecture Decision Records)
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+As **decisões arquiteturais** são registradas como ADRs em Markdown.
 
-### Deployment
+- Cada ADR possui status (`Proposed`, `Accepted`, `Rejected`, `Superseded`).
+- São aprovados via **Pull Request**.
+- Aparecem automaticamente como páginas do Docusaurus em `docs/adr/`.
+- Os diagramas podem conter links diretos para ADRs relevantes.
 
-Using SSH:
+👉 Para criar um novo ADR, use o [template disponível](adr/0000-template.md).
 
-```
-$ USE_SSH=true yarn deploy
-```
+---
 
-Not using SSH:
+## 🖼️ Diagramas
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+Os diagramas da arquitetura são mantidos em `diagrams/`:
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- **Structurizr DSL / C4** – visão de contexto, containers e componentes.  
+- **PlantUML** – diagramas de sequência e detalhamentos técnicos.  
+- **BPMN.io** – fluxos de processo relacionados ao IBM BAW.  
+
+No pipeline de CI, esses diagramas são renderizados em SVG e publicados em `docs/architecture/`.
+
+---
+
+## 🚀 Publicação e Automação
+
+- **GitHub Actions** valida ADRs e gera os diagramas em cada PR.
+- A branch `main` publica automaticamente o site do Docusaurus no GitHub Pages.  
+- O site está disponível em:  
+  👉 [https://ppsa-sgpp.github.io/sgpp-tech-guide](https://ppsa-sgpp.github.io/sgpp-tech-guide)
+
+---
+
+## 🤝 Contribuindo
+
+1. Crie uma branch para sua alteração.  
+2. Se adicionar ou alterar uma decisão arquitetural, crie/edite um ADR em `adr/`.  
+3. Abra um Pull Request.  
+   - Um ADR só é aceito após aprovação de pelo menos 1 arquiteto ou responsável técnico.  
+4. Ao ser aceito, ele será publicado automaticamente no Docusaurus.
+
+---
+
+## 📖 Referências
+
+- [TOGAF – Architecture Content Framework](https://pubs.opengroup.org/architecture/togaf9-doc/arch/chap31.html)  
+- [ADR – Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html)  
+- [Structurizr DSL](https://structurizr.com/dsl)  
+- [PlantUML](https://plantuml.com/)  
+- [BPMN.io](https://bpmn.io/)  
+
+---
