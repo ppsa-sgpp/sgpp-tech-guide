@@ -9,3 +9,5 @@ build/
 
 # docs/intro.md é autogerado
 docs/intro.md
+
+.pnpm-store/
