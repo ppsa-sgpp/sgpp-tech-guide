@@ -23,13 +23,26 @@ jobs:
       run: |
         cp -r confidential-docs/* docs/+confidential
         rm -rf confidential-docs
-    
+
     - name: Adicionar mensagem de confidencialidade nos arquivos
       run: |
         for file in $(find docs/+confidential -name '*.md'); do
           sed -i '1a > ⚠️ **O conteúdo deste documento destina-se exclusivamente à PPSA, não devendo ser divulgado fora da organização, nem duplicado, usado ou revelado, no todo ou em parte, para qualquer propósito que não seja o de avaliação, uso e acompanhamento dos serviços do qual ele trata.**' "$file"
         done
 
+    - name: Checkout ADRs
+        uses: actions/checkout@v4
+        with:
+          repository: org/sgpp-adrs
+          ref: main
+          path: _adrs
+          token: ${{ secrets.ADRS_READ_TOKEN }}
+
+    - name: Sync ADRs into Docusaurus
+        run: |
+          mkdir -p docs/adr
+          rsync -av --delete _adrs/adr/ docs/adr/
+    
     - name: Criando arquivo intro.md
       run: |
         echo "#Documentação" > docs/intro.md
