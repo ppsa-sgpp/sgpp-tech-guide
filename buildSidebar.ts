@@ -17,14 +17,6 @@ type SidebarDoc = string;
 
 type SidebarItem = SidebarCategory | SidebarDoc;
 
-// Função para capitalizar palavras
-function capitalizeWords(str: string): string {
-  return str
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
-}
-
 // Função para construir o sidebar
 export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
