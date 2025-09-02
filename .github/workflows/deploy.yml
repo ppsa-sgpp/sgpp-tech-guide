@@ -1,0 +1,70 @@
+name: Deploy Docusaurus
+
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [confidential-update]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório público
+        uses: actions/checkout@v3
+
+      - name: Clonar o repositório confidencial em pasta temporária
+        run: |
+          git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-tech-guide-confidential.git confidential-docs
+
+      - name: Mover arquivos confidenciais para a pasta docs
+        run: |
+          cp -r confidential-docs/* docs/+confidential
+          rm -rf confidential-docs
+
+      - name: Adicionar mensagem de confidencialidade nos arquivos
+        run: |
+          for file in $(find docs/+confidential -name '*.md'); do
+            sed -i '1a > ⚠️ **O conteúdo deste documento destina-se exclusivamente à PPSA, não devendo ser divulgado fora da organização, nem duplicado, usado ou revelado, no todo ou em parte, para qualquer propósito que não seja o de avaliação, uso e acompanhamento dos serviços do qual ele trata.**' "$file"
+          done
+
+      - name: Checkout ADRs
+        uses: actions/checkout@v4
+        with:
+          repository: ppsa-sgpp/sgpp-architecture
+          ref: main
+          path: _adrs
+          token: ${{ secrets.ADRS_READ_TOKEN }}
+
+      - name: Sync ADRs into Docusaurus
+        run: |
+          mkdir -p docs/adr
+          rsync -av --delete _adrs/adrs/ docs/adr/
+
+      - name: Criando arquivo intro.md
+        run: |
+          echo "#Documentação" > docs/intro.md
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Build do site
+        run: pnpm build
+
+      - name: Deploy para GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

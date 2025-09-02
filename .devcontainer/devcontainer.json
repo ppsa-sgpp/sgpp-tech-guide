@@ -1,0 +1,28 @@
+{
+  "name": "Docusaurus TypeScript Project",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "pnpm install && git config --global core.autocrlf false && git config --global core.eol lf && git config --global core.filemode false",
+  "portsAttributes": {
+    "3000": {
+      "label": "Docusaurus",
+      "onAutoForward": "notify"
+    }
+  }
+}
