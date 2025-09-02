@@ -33,7 +33,7 @@ jobs:
     - name: Checkout ADRs
       uses: actions/checkout@v4
       with:
-        repository: org/sgpp-adrs
+        repository: ppsa-sgpp/sgpp-architecture
         ref: main
         path: _adrs
         token: ${{ secrets.ADRS_READ_TOKEN }}
