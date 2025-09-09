@@ -41,7 +41,7 @@ jobs:
       - name: Sync ADRs into Docusaurus
         run: |
           mkdir -p docs/adr
-          rsync -av --delete _adrs/adrs/ docs/adr/
+          rsync -av --delete _adrs/adrs/ docs/adrs/
 
       - name: Criando arquivo intro.md
         run: |

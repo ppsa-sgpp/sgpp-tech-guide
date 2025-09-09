@@ -10,4 +10,8 @@ build/
 # docs/intro.md é autogerado
 docs/intro.md
 
+# docs/adrs é autogerado
+docs/adrs
+
+# pnpm store
 .pnpm-store/

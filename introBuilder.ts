@@ -32,20 +32,53 @@ function extractHeading1(filePath: string): string | null {
   return null;
 }
 
+function toPosix(p: string) {
+  // garante links markdown com "/" mesmo no Windows
+  return p.replace(/\\/g, "/");
+}
+
+function sortAdrNames(dir: string, names: string[]): string[] {
+  const num = (s: string) => {
+    const m = s.match(/^(\d+)/);
+    return m ? parseInt(m[1], 10) : NaN;
+  };
+  const ymd = (s: string) => {
+    const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
+    return m ? m[1] : null;
+  };
+
+  return [...names].sort((a, b) => {
+    const na = num(a), nb = num(b);
+    if (!isNaN(na) && !isNaN(nb)) return na - nb;
+
+    const da = ymd(a), db = ymd(b);
+    if (da && db) return da.localeCompare(db);
+
+    const sa = fs.statSync(path.join(dir, a)).mtimeMs;
+    const sb = fs.statSync(path.join(dir, b)).mtimeMs;
+    return sa - sb;
+  });
+}
+
 // Função para construir o Markdown
 function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
   // Processa os arquivos na raiz
-  const docsInRoot = entries
-    .filter(entry => entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'intro.md')
+  let docsInRoot = entries
+    .filter(entry => entry.isFile() 
+      && !entry.name.startsWith("adrs")
+      && entry.name.endsWith('.md') 
+      && entry.name !== 'intro.md'
+    )
     .map(entry => {
       const fullPath = path.join(dirPath, entry.name);
       const relativePath = path.join(basePath, entry.name);
       const fileName = entry.name.replace(/\.md$/, '');
       const heading = extractHeading1(fullPath) || capitalizeWords(fileName.replace(/-/g, ' '));
       return `- [${heading}](docs/${relativePath})`;
-    });
+    })
+    .filter(Boolean);
 
   // Processa as subcategorias
   const categories = entries
@@ -58,15 +91,35 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
         return buildMarkdown(fullPath, relativePath);
       }
 
-      const items = buildMarkdown(fullPath, relativePath, level + 1);
+      if(entry.name === "adrs") {
+        const adrFiles = fs.readdirSync(fullPath, { withFileTypes: true})
+          .filter(f => f.isFile() && f.name.endsWith(".md") && f.name !== "intro.md")
+          .map(f => f.name);
 
-      if (items) {
-        const header = `${'#'.repeat(level)} ${capitalizeWords(entry.name.replace(/-/g, ' '))}`;
-        return `${header}\n${items}`;
+        if(adrFiles.length === 0) return null;
+        
+        const sorted = sortAdrNames(fullPath, adrFiles);
+        const last5 = sorted.slice(-5);
+
+        const list = last5.map(name => {
+          const full = path.join(fullPath, name);
+          const rel = toPosix(path.posix.join(relativePath, name));
+          const fileName = name.replace(/\.md$/, "");
+          const heading = extractHeading1(full) || capitalizeWords(fileName.replace(/-/g, " "));
+          return `- [${heading}](docs/${rel})`;
+        }).join("\n");
+
+        const header = `${"#".repeat(level)} Últimas ADRs`;
+        return `${header}\n${list}`;
       }
-      return null;
+
+      const items = buildMarkdown(fullPath, relativePath, level + 1);
+      if (!items) return null;
+
+      const header = `${'#'.repeat(level)} ${capitalizeWords(entry.name.replace(/-/g, ' '))}`;
+      return `${header}\n${items}`;
     })
-    .filter(Boolean);
+    .filter(Boolean) as String[];
 
   return [...categories, ...docsInRoot].join('\n');
 }
