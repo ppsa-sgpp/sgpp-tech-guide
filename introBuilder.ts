@@ -66,9 +66,9 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
 
   // Processa os arquivos na raiz
   let docsInRoot = entries
-    .filter(entry => entry.isFile() 
+    .filter(entry => entry.isFile()
       && !entry.name.startsWith("adrs")
-      && entry.name.endsWith('.md') 
+      && entry.name.endsWith('.md')
       && entry.name !== 'intro.md'
     )
     .map(entry => {
@@ -91,14 +91,22 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
         return buildMarkdown(fullPath, relativePath);
       }
 
-      if(entry.name === "adrs") {
-        const adrFiles = fs.readdirSync(fullPath, { withFileTypes: true})
+      if (entry.name === "adrs") {
+        const adrFiles = fs.readdirSync(fullPath, { withFileTypes: true })
           .filter(f => f.isFile() && f.name.endsWith(".md") && f.name !== "intro.md")
           .map(f => f.name);
 
-        if(adrFiles.length === 0) return null;
-        
+        if (adrFiles.length === 0) return null;
+
         const sorted = sortAdrNames(fullPath, adrFiles);
+
+        const accepted = sorted.filter(name => {
+          const content = fs.readFileSync(path.join(fullPath, name), "utf8");
+          return content.includes("- **Status:** Accepted");
+        });
+
+        if (accepted.length === 0) return null;
+
         const last5 = sorted.slice(-5);
 
         const list = last5.map(name => {
