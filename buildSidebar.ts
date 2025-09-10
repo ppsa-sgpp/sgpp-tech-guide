@@ -23,7 +23,7 @@ export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
 
   // Processa primeiro os arquivos na raiz
   const docsInRoot: SidebarItem[] = entries
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .filter((entry) => entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx')) )
     .map((entry) => {
       const docId = toDocId(basePath, entry.name);
       return docId;
@@ -60,7 +60,7 @@ export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
 }
 
 function toDocId(basePath: string, fileName: string): string {
-  const nameNoExt = fileName.replace(/\.md$/, '');
+  const nameNoExt = fileName.replace(/\.(md|mdx)$/, '');
 
   // Detecta se estamos dentro de 'adr' (direto ou em subpastas)
   const isADR = basePath.split(path.sep).includes('adrs');
