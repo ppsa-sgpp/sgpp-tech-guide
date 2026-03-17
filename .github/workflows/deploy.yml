@@ -30,13 +30,17 @@ jobs:
             sed -i '1a > ⚠️ **O conteúdo deste documento destina-se exclusivamente à PPSA, não devendo ser divulgado fora da organização, nem duplicado, usado ou revelado, no todo ou em parte, para qualquer propósito que não seja o de avaliação, uso e acompanhamento dos serviços do qual ele trata.**' "$file"
           done
 
-      - name: Checkout ADRs
-        uses: actions/checkout@v4
-        with:
-          repository: ppsa-sgpp/sgpp-architecture
-          ref: main
-          path: _adrs
-          token: ${{ secrets.ADRS_READ_TOKEN }}
+      # - name: Checkout ADRs
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: ppsa-sgpp/sgpp-architecture
+      #     ref: main
+      #     path: _adrs
+      #     token: ${{ secrets.ADRS_READ_TOKEN }}
+
+      - name: Clonar o repositório confidencial em pasta temporária
+        run: |
+          git clone https://x-access-token:${{ secrets.ADRS_READ_TOKEN }}@github.com/ppsa-sgpp/sgpp-architecture.git _adrs
 
       - name: Sync ADRs into Docusaurus
         run: |
