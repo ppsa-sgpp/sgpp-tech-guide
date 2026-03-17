@@ -40,7 +40,7 @@ jobs:
 
       - name: Clonar o repositório confidencial em pasta temporária
         run: |
-          git clone https://x-access-token:${{ secrets.ADRS_READ_TOKEN }}@github.com/ppsa-sgpp/sgpp-architecture.git _adrs
+          git clone https://x-access-token:${{ secrets.CONFIDENTIAL_REPO_TOKEN }}@github.com/ppsa-sgpp/sgpp-architecture.git _adrs
 
       - name: Sync ADRs into Docusaurus
         run: |
