@@ -21,9 +21,19 @@ type SidebarItem = SidebarCategory | SidebarDoc;
 export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
+  const isADR = basePath.split(path.sep).includes('adrs');
+
   // Processa primeiro os arquivos na raiz
   const docsInRoot: SidebarItem[] = entries
     .filter((entry) => entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx')) )
+    .sort((a, b) => {
+      if (isADR) {
+        const numA = parseInt(a.name.match(/^(\d+)/)?.[1] || '0', 10);
+        const numB = parseInt(b.name.match(/^(\d+)/)?.[1] || '0', 10);
+        return numB - numA;
+      }
+      return a.name.localeCompare(b.name);
+    })
     .map((entry) => {
       const docId = toDocId(basePath, entry.name);
       return docId;

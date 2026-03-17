@@ -49,14 +49,14 @@ function sortAdrNames(dir: string, names: string[]): string[] {
 
   return [...names].sort((a, b) => {
     const na = num(a), nb = num(b);
-    if (!isNaN(na) && !isNaN(nb)) return na - nb;
+    if (!isNaN(na) && !isNaN(nb)) return nb - na; // Decrescente
 
     const da = ymd(a), db = ymd(b);
-    if (da && db) return da.localeCompare(db);
+    if (da && db) return db.localeCompare(da);
 
     const sa = fs.statSync(path.join(dir, a)).mtimeMs;
     const sb = fs.statSync(path.join(dir, b)).mtimeMs;
-    return sa - sb;
+    return sb - sa;
   });
 }
 
@@ -107,7 +107,7 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
 
         if (accepted.length === 0) return null;
 
-        const last5 = sorted.slice(-5);
+        const last5 = sorted.slice(0, 5); // Os primeiros 5 da lista decrescente
 
         const list = last5.map(name => {
           const full = path.join(fullPath, name);
