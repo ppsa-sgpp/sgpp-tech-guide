@@ -122,7 +122,7 @@ para representar a nova etapa.
 
 ### 5. Atualizar o Diagrama do Estado Atual do Ciclo de Vida de Contas de Custo em Óleo
 
-📄 **Descrição:** Atualizar o [diagrama do ciclo de vida](img/etapas_ciclo_vida.drawio) e substituir a imagem abaixo:
+📄 **Descrição:** Atualizar o diagrama do ciclo de vida abaixo e substituir a imagem abaixo:
 
 #### Ciclo de vida de CCO não recursal (MEN) ####
 ```mermaid
@@ -184,7 +184,6 @@ gitGraph
    commit id: "Reconhecimento manual dos gastos 🔀" type: NORMAL
    commit id: "Geração de Nota técnica 🔀" type: NORMAL
    commit id: "Analise de Projeção de Direção" type: NORMAL
-   commit id: "Geração de remessas derivadas" type: NORMAL tag: "derivar ciclo de vida CCO"
    commit id: "Geração de remessas derivadas" type: NORMAL
    commit id: "Geração de contas de custo em óleo de revisão" type: NORMAL
    commit id: "Adição de overhead à conta de custo em óleo de revisão" type: NORMAL
