@@ -124,7 +124,96 @@ para representar a nova etapa.
 
 📄 **Descrição:** Atualizar o [diagrama do ciclo de vida](img/etapas_ciclo_vida.drawio) e substituir a imagem abaixo:
 
-![Etapas](img/etapas_ciclo_vida_v4.png)
+#### Ciclo de vida de CCO não recursal (MEN) ####
+```mermaid
+gitGraph
+   branch "ciclo de vida original"
+   commit id: " " type: NORMAL tag: "RCO"
+   commit id: "  " type: NORMAL
+   commit id: "Recebimento de remessas" type: NORMAL
+   commit id: "Identificação das fases dos gastos" type: NORMAL
+   commit id: "Geração de remessas derivadas" type: NORMAL tag: "derivar ciclo de vida CCO"
+   
+   branch "ciclo de vida derivado 1..n"
+   checkout "ciclo de vida derivado 1..n"
+   commit id: "Distribuição dos gastos" type: NORMAL
+   commit id: "Auto reconhecimento de gastos" type: NORMAL
+   commit id: "Reconhecimento manual dos gastos 🔀" type: NORMAL
+   commit id: "Geração de Nota técnica 🔀" type: NORMAL
+   commit id: "Atualização de remessas derivadas" type: NORMAL
+   commit id: "Geração de conta de custo em óleo" type: NORMAL
+   commit id: "Adição de overhead à conta de custo em óleo" type: NORMAL
+   commit id: "Aplicação de invalidação de reconhecimentos parciais" type: HIGHLIGHT tag: "RCO"
+   commit id: "Geração de carta ao operador" type: NORMAL
+   commit id: "Geração de relatório de consolidação" type: NORMAL
+   commit id: "Aplicação de correção monetária  🔀" type: HIGHLIGHT tag: "ACP"
+   commit id: "Recuperação de custos 🔀" type: HIGHLIGHT tag: "RPCO"
+
+  ```
+
+#### Ciclo de vida de CCO recursal ####
+```mermaid
+gitGraph
+   branch "ciclo de vida derivado 1..n"
+   checkout "ciclo de vida derivado 1..n"
+   commit id: "Alteração de resposta à gestora" type: NORMAL
+   commit id: "Alteração da fase da remesssa" type: NORMAL
+   commit id: "Reconhecimento manual dos gastos 🔀" type: NORMAL
+   commit id: "Geração de Nota técnica 🔀" type: NORMAL
+   commit id: "Atualização de remessas derivadas" type: NORMAL
+   commit id: "Geração de conta de custo em óleo" type: NORMAL
+   commit id: "Adição de overhead à conta de custo em óleo" type: NORMAL
+   commit id: "Aplicação de invalidação de reconhecimentos parciais" type: HIGHLIGHT tag: "RCO"
+   commit id: "Geração de carta ao operador" type: NORMAL
+   commit id: "Geração de relatório de consolidação" type: NORMAL
+   commit id: "Aplicação de correção monetária 🔀" type: HIGHLIGHT tag: "ACP"
+   commit id: "Recuperação de custos 🔀" type: HIGHLIGHT tag: "RPCO"
+
+```
+
+#### Ciclo de vida de CCO de revisão ####
+```mermaid
+gitGraph
+   branch "ciclo de vida original"
+   commit id: " " type: NORMAL tag: "RCO"
+   commit id: "  " type: NORMAL
+   commit id: "Inicio da revisão" type: NORMAL
+
+   branch "ciclo de vida derivado 1..n"
+   checkout "ciclo de vida derivado 1..n"
+   commit id: "Reconhecimento manual dos gastos 🔀" type: NORMAL
+   commit id: "Geração de Nota técnica 🔀" type: NORMAL
+   commit id: "Analise de Projeção de Direção" type: NORMAL
+   commit id: "Geração de remessas derivadas" type: NORMAL tag: "derivar ciclo de vida CCO"
+   commit id: "Geração de remessas derivadas" type: NORMAL
+   commit id: "Geração de contas de custo em óleo de revisão" type: NORMAL
+   commit id: "Adição de overhead à conta de custo em óleo de revisão" type: NORMAL
+   commit id: "Consolidação de conta de custo em óleo de revisão" type: NORMAL
+   commit id: "Geração de carta ao operador" type: NORMAL
+   commit id: "Geração de relatório de consolidação" type: NORMAL
+   commit id: "Aplicação de correção monetária 🔀" type: HIGHLIGHT tag: "ACP"
+   commit id: "Recuperação de custos 🔀" type: HIGHLIGHT tag: "RPCO"
+
+```
+
+#### Ciclo de vida de CCO de auditoria ####
+```mermaid
+gitGraph
+   branch "ciclo de vida original"
+   commit id: " " type: NORMAL tag: "AUD"
+   commit id: "  " type: NORMAL
+   commit id: "Geração remessa derivada de fiscalização" type: NORMAL tag: "derivar ciclo de vida CCO"
+
+   branch "ciclo de vida derivado 1..n"
+   checkout "ciclo de vida derivado 1..n"
+   commit id: "Geração de contas de custo em óleo de fiscalização" type: NORMAL
+   commit id: "Adição de overhead à conta de custo em óleo de fiscalização" type: NORMAL
+   commit id: "Aplicação de correção monetária de fiscalização" type: NORMAL
+   commit id: "Aplicação de correção monetária 🔀" type: HIGHLIGHT tag: "ACP"
+   commit id: "Consolidação de conta de custo em óleo de fiscalização" type: NORMAL
+   commit id: "Recuperação de custos 🔀" type: HIGHLIGHT tag: "RPCO"
+
+```
 
 ### 6. Atualização e Versionamento de Etapas
 
