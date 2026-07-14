@@ -24,6 +24,25 @@ const config: Config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          // sgpp-services movido de building-blocks para patterns
+          {
+            from: '/docs/building-blocks/sgpp-services/ciclo-vida',
+            to: '/docs/patterns/sgpp-services/ciclo-vida',
+          },
+          {
+            from: '/docs/building-blocks/sgpp-services/servico_criacao_planilha_classe',
+            to: '/docs/patterns/sgpp-services/servico_criacao_planilha_classe',
+          },
+        ],
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',

@@ -65,18 +65,19 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
   // Processa os arquivos na raiz
+  // Links relativos a docs/intro.md (sem prefixo "docs/"), com separador POSIX
   let docsInRoot = entries
     .filter(entry => entry.isFile()
       && !entry.name.startsWith("adrs")
-      && entry.name.endsWith('.md')
+      && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))
       && entry.name !== 'intro.md'
     )
     .map(entry => {
       const fullPath = path.join(dirPath, entry.name);
-      const relativePath = path.join(basePath, entry.name);
-      const fileName = entry.name.replace(/\.md$/, '');
+      const relativePath = toPosix(path.join(basePath, entry.name));
+      const fileName = entry.name.replace(/\.(md|mdx)$/, '');
       const heading = extractHeading1(fullPath) || capitalizeWords(fileName.replace(/-/g, ' '));
-      return `- [${heading}](docs/${relativePath})`;
+      return `- [${heading}](${relativePath})`;
     })
     .filter(Boolean);
 
@@ -88,7 +89,7 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
       const relativePath = path.join(basePath, entry.name);
 
       if (entry.name === '+confidential') {
-        return buildMarkdown(fullPath, relativePath);
+        return buildMarkdown(fullPath, toPosix(relativePath));
       }
 
       if (entry.name === "adrs") {
@@ -111,17 +112,17 @@ function buildMarkdown(dirPath: string, basePath = '', level = 3): string {
 
         const list = last5.map(name => {
           const full = path.join(fullPath, name);
-          const rel = toPosix(path.posix.join(relativePath, name));
+          const rel = toPosix(path.posix.join(toPosix(relativePath), name));
           const fileName = name.replace(/\.md$/, "");
           const heading = extractHeading1(full) || capitalizeWords(fileName.replace(/-/g, " "));
-          return `- [${heading}](docs/${rel})`;
+          return `- [${heading}](${rel})`;
         }).join("\n");
 
         const header = `${"#".repeat(level)} Últimas ADRs`;
         return `${header}\n${list}`;
       }
 
-      const items = buildMarkdown(fullPath, relativePath, level + 1);
+      const items = buildMarkdown(fullPath, toPosix(relativePath), level + 1);
       if (!items) return null;
 
       const header = `${'#'.repeat(level)} ${capitalizeWords(entry.name.replace(/-/g, ' '))}`;
