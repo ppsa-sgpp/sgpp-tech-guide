@@ -186,11 +186,7 @@ query = applyPage(query, criteria.getPageCtl());
 ```java
 private <T extends MinhaEntity> SpringDataMongodbQuery<T> getQueryWithCriteria(
         SpringDataMongodbQuery<T> query,
-        MinhaEntityCriteria criteria) {
-    if (criteria == null) {
-        return query;
-    }
-
+        @NotNull MinhaEntityCriteria criteria) {
     QMinhaEntity q = QMinhaEntity.minhaEntity;
 
     query = whereIf(query, criteria.getId(), q.id, this::buildStringExpression);
