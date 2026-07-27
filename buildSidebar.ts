@@ -32,6 +32,12 @@ export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
         const numB = parseInt(b.name.match(/^(\d+)/)?.[1] || '0', 10);
         return numB - numA;
       }
+      // intro.md sempre no topo da categoria (seção de abertura)
+      const aIntro = isIntroFile(a.name) ? 0 : 1;
+      const bIntro = isIntroFile(b.name) ? 0 : 1;
+      if (aIntro !== bIntro) {
+        return aIntro - bIntro;
+      }
       return a.name.localeCompare(b.name);
     })
     .map((entry) => {
@@ -72,17 +78,15 @@ export function buildSidebar(dirPath: string, basePath = ''): SidebarItem[] {
 function toDocId(basePath: string, fileName: string): string {
   const nameNoExt = fileName.replace(/\.(md|mdx)$/, '');
 
-  // Detecta se estamos dentro de 'adr' (direto ou em subpastas)
-  const isADR = basePath.split(path.sep).includes('adrs');
+  // Docusaurus remove prefixos numéricos (ex.: 01-foo.md → foo) do id/slug.
+  // O prefixo serve só para ordenação no filesystem; o sidebar precisa usar o id real.
+  const cleaned = nameNoExt.replace(/^\d+-/, '');
+  return path.posix.join(norm(basePath), cleaned);
+}
 
-  if (isADR) {
-    // Remove prefixo numérico (1+ dígitos) seguido de hífen, se existir
-    const cleaned = nameNoExt.replace(/^\d+-/, '');
-    return path.posix.join(norm(basePath), cleaned);
-  }
-
-  // Padrão para outros docs
-  return path.posix.join(norm(basePath), nameNoExt);
+/** intro.md / intro.mdx — página de abertura da pasta */
+function isIntroFile(fileName: string): boolean {
+  return /^(\d+-)?intro\.(md|mdx)$/i.test(fileName);
 }
 
 /** Normaliza separador para POSIX (Docusaurus usa ids com /) */

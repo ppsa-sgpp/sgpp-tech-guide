@@ -22,9 +22,11 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
+  // theme-mermaid renderiza os diagramas; mermaid-pan-zoom adiciona pan/zoom, fullscreen e copy
   themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [
+    'docusaurus-plugin-mermaid-pan-zoom',
     [
       '@docusaurus/plugin-client-redirects',
       {
