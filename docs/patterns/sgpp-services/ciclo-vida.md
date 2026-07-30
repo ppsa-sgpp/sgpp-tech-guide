@@ -89,10 +89,47 @@ public void executar(EtapaRequisicaoImpl etapaRequisicao)
   sgpp.ciclovidacco.etapas.EtapaImpl.lancarExcecaoConclusaoEtapa(CicloVidaCcoService, EtapaRequisicaoImpl, Exception)
   ```
   
-- **Finalização da Etapa:**
-  ```java
-  sgpp.services.contacustooleo.ciclovida.CicloVidaCcoService.concluirEtapa(EtapaBaseEvent)
-  ```
+- **Finalização da Etapa:** escolher o método de conclusão pelo **escopo** da etapa (ver seção [3.2](#32-conclusão-da-etapa-no-cvcco--qual-método-usar)). Não usar sempre o mesmo overload.
+
+---
+
+### 3.2. Conclusão da etapa no CVCCO — qual método usar
+
+Classe: `sgpp.services.contacustooleo.ciclovida.CicloVidaCcoService`.
+
+O orquestrador (BPM) costuma consultar `isEtapasConcluidas`, que exige **`dataConclusao` em todas as ocorrências** do nome da etapa no CVCCO. Por isso a conclusão deve **preencher o slot do template** (item aberto da etapa), e não apenas acrescentar uma cópia no fim da lista — senão o template fica aberto e `isConcluida` permanece `false`.
+
+#### Escolha pelo escopo
+
+| Escopo da etapa | Preferir | Observação |
+|-----------------|----------|------------|
+| **Uma CCO** por execução, com **várias CVCCO** no mesmo `contextId` (ex.: OH/CM de fiscalização) | `adicionarEtapaConcluida(etapa, idContaCustoOleo, faseRemessa)` | Isola a conclusão na CVCCO daquela CCO. Preenche o slot aberto do template; só appenda se não houver item aberto. |
+| **Uma remessa** (`idRemessa` conhecido, 1 CVCCO por remessa) | `concluirEtapa(etapa, idRemessa, faseRemessa)` | Localiza o item da etapa e conclui. |
+| **Lote / processo** (todas as CVCCO do `contextId` juntas) | `concluirEtapa(etapa, faseRemessa)` | Marca a etapa em **todas** as CVCCO do contextId — só use se isso for o desejado. |
+| Etapa **gera a CCO** e grava o id no ciclo | `concluirEtapaGeradoraDeCco(...)` | |
+| **Consolidação** multi-CCO → CVCCO consolidado | `concluirEtapaConsolidandoCvccos(...)` | |
+
+#### Regras práticas
+
+1. Etapas novas (e refatorações) com processamento **por conta** → usar `adicionarEtapaConcluida(etapa, idCco, fase)`.
+2. Sempre passar **`FaseRemessaEnum`** quando não for o fluxo regular MEN (`AUD`, fases de revisão, etc.), para buscar na collection certa (fisc/rev/regular).
+3. O check `isConcluida` no BPM deve usar o **mesmo escopo** da conclusão (lista de ids de CCO vs `contextId`).
+4. **Não** unificar tudo em um único método:
+   - `adicionarEtapaConcluida(etapa, fase)` (só contextId) e `concluirEtapa(etapa, fase)` afetam o **lote** do contextId — inadequados quando há várias CCO em paralelo no mesmo contextId.
+   - O nome `adicionarEtapaConcluida(..., idCco, fase)` engana: após a correção, ele **conclui o item certo** (template aberto), não “só adiciona” no fim.
+
+#### Anti-padrão a evitar
+
+```java
+// ❌ Várias CCO no mesmo contextId: conclui o lote inteiro cedo demais
+cicloVidaCcoService.concluirEtapa(etapaRequest, FaseRemessaEnum.AUD);
+
+// ❌ Append cego sem idCco quando o orquestrador espera conclusão por conta
+// (deixa o slot template sem dataConclusao → isConcluida = false)
+
+// ✅ Escopo por CCO (fiscalização OH/CM, etc.)
+cicloVidaCcoService.adicionarEtapaConcluida(etapaRequest, idContaCustoOleo, FaseRemessaEnum.AUD);
+```
 
 ---
 
