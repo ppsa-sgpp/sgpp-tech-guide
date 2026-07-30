@@ -253,30 +253,72 @@ gitGraph
 
 ### 6. Atualização e Versionamento de Etapas
 
-📄 **Descrição:** Toda etapa deve ser criada em um pacote que expõe a sua versão, por exemplo: `v1_0_0`.
+📄 **Descrição:** Toda etapa vive em um pacote de versão (ex.: `v1_0_0` / `v1_1_0`). A decisão de **criar versão nova** vs **alterar a versão atual** segue **compatibilidade**: só versionar quando o código da etapa (ou payloads já enfileirados/persistidos) **não funciona mais sem mudanças** que quebrem o contrato antigo.
 
-🔹 **Atualizações menores** que não envolvem a alteração dos objetos de _Requisição_ e seus atributos, e que não modificam drasticamente as regras de negócio, podem ser feitas diretamente nas classes desse pacote.
+#### 6.1. Critério principal — compatibilidade
 
-🔹 **Versionamento necessário:** Caso o objeto de _Requisição_ seja alterado ou a regra de negócio sofra mudanças significativas, uma nova versão da etapa deve ser criada.
+Pergunta-guia:
 
-📦 **Procedimento para versionamento:**
-- Criar um novo pacote que represente a nova versão, por exemplo: `v1_1_0`.
-- Duplicar todas as classes internas da versão anterior.
-- A nova versão **não** deve utilizar classes da versão antiga.
-- As classes do pacote que representa a versão antiga, com exceção das classes que compõe o payload da Requisição, devem ser apagadas da base de código (Originalmente era para ser mantido para que se pudesse fazer replay das etapas com eles, mas por conta de organização do código, assume-se que todo replay passará por uma conversão). As classes que representam o payload da Requisição devem ser mantidas para que seja possível realizar a adptação entre as fases.
-- Criar uma classe de adaptação que estenda:
+> Um payload / _Requisição_ no formato **antigo** ainda seria processado corretamente pelo código **novo** da etapa **sem** adaptador e **sem** quebrar o runtime?
 
-  ```java
-  sgpp.ciclovidacco.etapas.adaptacao.AdaptadorEtapaRequisicaoAbstract<ORIGEM, ALVO>
-  ```
+| Resposta | Ação |
+|----------|------|
+| **Sim** (compatível) | **Não versionar.** Alterar as classes no pacote da versão vigente. |
+| **Não** (incompatível) | **Versionar.** Novo pacote + adaptador de requisição (ver 6.3). |
 
-- Anotar a classe com (as versões anotadas referem-se à versão anterior e à nova versão, respectivamente):
-  ```java
-  @Adaptacao(versaoOrigem = "1.0.0", versaoAlvo = "2.0.0")
-  ```
-- Implementar o método:
-  ```java
-  sgpp.ciclovidacco.etapas.adaptacao.AdaptadorEtapaRequisicaoAbstract.converter(ORIGEM)
-  ```
-  para realizar a conversão do objeto de _Requisição_ da versão antiga para a nova.
+Ou seja: mudança na _Requisição_ **por si só** **não** obriga versão nova. O que obriga é **quebra de compatibilidade** com o contrato anterior.
+
+#### 6.2. Quando **não** versionar (evoluir no pacote atual)
+
+Exemplos típicos de mudança **compatível** (manter `vX_Y_Z`):
+
+- **Adicionar** atributos opcionais na _Requisição_ (código antigo não enviava; código novo trata `null` / default).
+- **Adicionar** lógica de negócio que não exige campos novos obrigatórios no payload antigo.
+- Correção de bug, refatoração interna, logs, idempotência — **mesmo shape** de input.
+- Ajustes que o deserializador / `convertEtapa` aceitam sem falhar em mensagens já na fila no formato antigo.
+
+#### 6.3. Quando **versionar** (novo pacote)
+
+Crie versão nova quando o contrato antigo **deixa de ser válido** para o código novo, por exemplo:
+
+- **Remover** ou **renomear** atributos da _Requisição_ usados no fluxo.
+- Tornar **obrigatório** um campo que antes era opcional / ausente (payload antigo quebra ou comporta-se de forma errada).
+- **Mudar tipo / semântica** de um campo de forma que o valor antigo seja interpretado incorretamente.
+- Reescrever a regra de negócio de modo que o input antigo **não** produza o mesmo efeito esperado sem conversão explícita.
+- Qualquer alteração em que o replay / reprocessamento de eventos antigos **precise** de `AdaptadorEtapaRequisicao` para virar o formato novo.
+
+#### 6.4. Procedimento quando versionar
+
+1. Criar pacote da nova versão (ex.: `v1_1_0`).
+2. Duplicar as classes da versão anterior no pacote novo.
+3. A nova versão **não** deve depender de classes de implementação da versão antiga (exceto payloads de requisição mantidos para adaptação).
+4. Classes da versão antiga (exceto as que compõem o **payload da Requisição**) devem ser removidas da base. Assume-se que replay passa por **conversão**; os payloads antigos ficam para o adaptador.
+5. Criar adaptador estendendo:
+
+   ```java
+   sgpp.ciclovidacco.etapas.adaptacao.AdaptadorEtapaRequisicaoAbstract<ORIGEM, ALVO>
+   ```
+
+6. Anotar (versão origem → alvo):
+
+   ```java
+   @Adaptacao(versaoOrigem = "1.0.0", versaoAlvo = "1.1.0")
+   ```
+
+7. Implementar:
+
+   ```java
+   AdaptadorEtapaRequisicaoAbstract.converter(ORIGEM)
+   ```
+
+   convertendo a _Requisição_ antiga para a nova.
+
+#### 6.5. Resumo
+
+```text
+Mudança compatível com payload/código antigo?  →  editar versão atual
+Mudança exige outro contrato ou conversão?     →  nova versão + adaptador
+```
+
+Não versionar “por precaução” a cada atributo novo; versionar quando **sem** versão/adaptador o fluxo antigo **quebraria** ou **mentiria** no resultado.
 
