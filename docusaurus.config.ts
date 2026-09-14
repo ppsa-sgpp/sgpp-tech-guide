@@ -13,7 +13,6 @@ const config: Config = {
   organizationName: 'ppsa-sgpp',
   projectName: 'sgpp-tech-guide',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -21,6 +20,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
   // theme-mermaid renderiza os diagramas; mermaid-pan-zoom adiciona pan/zoom, fullscreen e copy
   themes: ['@docusaurus/theme-mermaid'],
