@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_ssew" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.6.1">
+  <bpmn:process id="Process_ServerSideExceptionWrapper" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_ssew">
+      <bpmn:lane id="Lane_System" name="System">
+        <bpmn:flowNodeRef>StartEvent_ssew</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ServicoEncapsulado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_IntegrationError</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_ConfigurationError</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_TratamentoErroSistemico</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Sucesso</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_ErroTratado</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_ssew">
+      <bpmn:outgoing>Flow_Start_Servico</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_ServicoEncapsulado" name="Serviço Encapsulado">
+      <bpmn:incoming>Flow_Start_Servico</bpmn:incoming>
+      <bpmn:outgoing>Flow_Servico_Sucesso</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="Event_IntegrationError" name="Integration&#10;Error" attachedToRef="Activity_ServicoEncapsulado">
+      <bpmn:outgoing>Flow_IntegrationError_Tratamento</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_Integration" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_ConfigurationError" name="Configuration&#10;Error" attachedToRef="Activity_ServicoEncapsulado">
+      <bpmn:outgoing>Flow_ConfigurationError_Tratamento</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_Configuration" />
+    </bpmn:boundaryEvent>
+    <bpmn:callActivity id="Activity_TratamentoErroSistemico" name="Tratamento de Erro Sistêmico">
+      <bpmn:incoming>Flow_IntegrationError_Tratamento</bpmn:incoming>
+      <bpmn:incoming>Flow_ConfigurationError_Tratamento</bpmn:incoming>
+      <bpmn:outgoing>Flow_Tratamento_Fim</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="EndEvent_Sucesso" name="Sucesso">
+      <bpmn:incoming>Flow_Servico_Sucesso</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="EndEvent_ErroTratado" name="Erro Tratado">
+      <bpmn:incoming>Flow_Tratamento_Fim</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_Start_Servico" sourceRef="StartEvent_ssew" targetRef="Activity_ServicoEncapsulado" />
+    <bpmn:sequenceFlow id="Flow_Servico_Sucesso" sourceRef="Activity_ServicoEncapsulado" targetRef="EndEvent_Sucesso" />
+    <bpmn:sequenceFlow id="Flow_IntegrationError_Tratamento" sourceRef="Event_IntegrationError" targetRef="Activity_TratamentoErroSistemico" />
+    <bpmn:sequenceFlow id="Flow_ConfigurationError_Tratamento" sourceRef="Event_ConfigurationError" targetRef="Activity_TratamentoErroSistemico" />
+    <bpmn:sequenceFlow id="Flow_Tratamento_Fim" sourceRef="Activity_TratamentoErroSistemico" targetRef="EndEvent_ErroTratado" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ssew">
+    <bpmndi:BPMNPlane id="BPMNPlane_ssew" bpmnElement="Process_ServerSideExceptionWrapper">
+      <bpmndi:BPMNShape id="Lane_System_di" bpmnElement="Lane_System" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="700" height="320" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_ssew_di" bpmnElement="StartEvent_ssew">
+        <dc:Bounds x="212" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_ServicoEncapsulado_di" bpmnElement="Activity_ServicoEncapsulado">
+        <dc:Bounds x="300" y="120" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Sucesso_di" bpmnElement="EndEvent_Sucesso">
+        <dc:Bounds x="782" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="778" y="185" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_TratamentoErroSistemico_di" bpmnElement="Activity_TratamentoErroSistemico">
+        <dc:Bounds x="520" y="260" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_ErroTratado_di" bpmnElement="EndEvent_ErroTratado">
+        <dc:Bounds x="782" y="282" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="767" y="325" width="67" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_IntegrationError_di" bpmnElement="Event_IntegrationError">
+        <dc:Bounds x="322" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="219" y="217" width="98" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_ConfigurationError_di" bpmnElement="Event_ConfigurationError">
+        <dc:Bounds x="372" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="428" y="186" width="134" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_Start_Servico_di" bpmnElement="Flow_Start_Servico">
+        <di:waypoint x="248" y="160" />
+        <di:waypoint x="300" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Servico_Sucesso_di" bpmnElement="Flow_Servico_Sucesso">
+        <di:waypoint x="420" y="160" />
+        <di:waypoint x="782" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IntegrationError_Tratamento_di" bpmnElement="Flow_IntegrationError_Tratamento">
+        <di:waypoint x="340" y="218" />
+        <di:waypoint x="340" y="300" />
+        <di:waypoint x="520" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_ConfigurationError_Tratamento_di" bpmnElement="Flow_ConfigurationError_Tratamento">
+        <di:waypoint x="390" y="218" />
+        <di:waypoint x="390" y="240" />
+        <di:waypoint x="600" y="240" />
+        <di:waypoint x="600" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Tratamento_Fim_di" bpmnElement="Flow_Tratamento_Fim">
+        <di:waypoint x="680" y="300" />
+        <di:waypoint x="782" y="300" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

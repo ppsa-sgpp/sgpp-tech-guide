@@ -1,0 +1,79 @@
+import BpmnViewer from '@site/src/components/BpmnViewer';
+
+# Server-Side Exception Wrapper
+
+🔍️ **Local de criação:** IBM BAW  
+⌛️ **Tempo estimado:** 1 hora  
+🔧 **Função:** Encapsular um serviço já criado em um subprocesso de tratamento de erro server-side  
+🏷️ **Nome:** O nome desse subprocesso deve ser o mesmo do serviço encapsulado (sem sufixo SF) + "Wrapper"
+
+### Diagrama BPMN
+
+<BpmnViewer src="bpmn/server-side-exception-wrapper.bpmn" />
+
+### Quando utilizar
+
+Sempre que um serviço do IBM BAW for invocado **fora de um Client-Side Human Service (CSHS)** e, portanto, precisar ser executado em uma lane de **System**.
+
+Como não há interação humana nesse contexto, o erro não pode ser apresentado ao usuário para decisão. O tratamento é integralmente sistêmico: a exceção é capturada, enriquecida com dados de contexto e encaminhada ao subprocesso **Tratamento de Erro Sistêmico** do toolkit *TKHE_HandleErrors*.
+
+### Pré requisitos
+
+Ter o serviço a ser encapsulado já criado. Caso seja um serviço de integração, vide [Configuração do Serviço REST no IBM BAW](servicos-rest.md)  
+O toolkit *TKHE_HandleErrors* deve estar declarado como dependência do Process App;  
+O toolkit *TKISC_IntegracoesSistemicasComuns* deve estar declarado como dependência do Process App (origem dos erros `IntegrationError` e `ConfigurationError`).
+
+## Etapas de execução
+
+### 1. Criar o subprocesso na lane de System
+
+O tratamento **não deve ser implementado diretamente no fluxo principal do processo**. Ele deve ser encapsulado em um **subprocesso**, de modo que a captura da exceção e o seu encaminhamento fiquem isolados do fluxo de negócio.
+
+Todas as atividades desse subprocesso — inclusive a chamada ao serviço encapsulado e o tratamento do erro — devem estar posicionadas na lane **System**.
+
+### 2. Definir parâmetros de entrada, saída e privados
+
+**Variáveis de entrada:** Defina os parâmetros de entrada com os mesmos nomes e tipos do serviço encapsulado
+
+**Variáveis de saída:** Defina os parâmetros de saída com os mesmos nomes e tipos do serviço encapsulado
+
+**Variáveis privadas:** A seguinte variável deve ser definida:
+- **error** do tipo *ErrorBO* definido no toolkit *TKHE_HandleErrors*
+
+Não é necessário declarar variáveis privadas para `errorCode`, `atividadeGeradora` e `prioridadeDaExcecao` — esses valores são definidos diretamente no *input mapping* do subprocesso de tratamento (etapa 4).
+
+### 3. Adicionar o Service encapsulado já criado:
+
+**Nome:** O nome deve ser o nome do serviço  
+**Função:** Executar o serviço encapsulado  
+**Configuração:** Configure as propriedades de entrada e saída do serviço de acordo com as variáveis de entrada e saída do Wrapper  
+**Erro:** Serviços encapsulados geralmente lançam uma exceção do tipo *IntegrationError* (que retorna um objeto do tipo *ErrorBO*) e um do tipo *ConfigurationError* (que retorna um objeto do tipo *ErrorBO*), definidos no toolkit *TKISC_IntegracoesSistemicasComuns*.  
+**Boundary Event:** Adicionar um boundary event para cada um desses erros, mapeando o *ErrorBO* recebido para a variável privada **error**  
+**Observação:** diferentemente do [Client-Side Exception Wrapper](client-side-exception-wrapper.mdx), **não há distinção de tratamento entre os dois erros** — ambos os fluxos seguem diretamente para o subprocesso de tratamento.
+
+### 4. Apontar a saída da exceção para o subprocesso *Tratamento de Erro Sistêmico* do toolkit *TKHE_HandleErrors*
+
+**Nome:** Tratamento de Erro Sistêmico  
+**Função:** Tratar sistemicamente a exceção, sem interação humana  
+**Configuração:** Os fluxos dos dois boundary events devem apontar diretamente para este subprocesso. **Não é necessário um script de preparação** — os três parâmetros são definidos diretamente no *input mapping*:
+
+| Parâmetro de entrada | Valor |
+| --- | --- |
+| **errorCode** | `tw.local.error.errorCode` — atributo do *ErrorBO* capturado pela exceção lançada |
+| **atividadeGeradora** | String com o nome da atividade que gerou o erro, ex.: `"Consultar Conta de Custo de Óleo"` |
+| **prioridadeDaExcecao** | Prioridade do erro. Em casos não mapeados, normalmente `"muito baixa"` |
+
+### 5. Encerrar o subprocesso
+
+O fluxo de erro deve terminar em um evento de fim próprio, após o subprocesso *Tratamento de Erro Sistêmico*. Não há retorno ao serviço encapsulado, pois **não existe a trilha de cancelar/repetir** — essa decisão depende de interação humana, inexistente neste contexto.
+
+## Diferenças em relação ao Client-Side Exception Wrapper
+
+| Aspecto | Client-Side | Server-Side |
+| --- | --- | --- |
+| Contexto de execução | Dentro de um CSHS | Fora de um CSHS, em lane de **System** |
+| Encapsulamento | Nested service | **Subprocesso** |
+| Verificação `isRest` | Sim (`true` para *IntegrationError*, `false` para *ConfigurationError*) | **Não existe** |
+| Trilha de cancelar (gateway `Cancelar?`) | Sim | **Não existe** (sem interação humana) |
+| Destino do tratamento | Nested Client-Side Service *Service Exception Treatment* (*TKHE_HandleErrors*) | Subprocesso *Tratamento de Erro Sistêmico* (*TKHE_HandleErrors*) |
+| Entradas do tratamento | `error`, `isRest`, `showCancel`, `acao` | `errorCode`, `atividadeGeradora`, `prioridadeDaExcecao`, definidos direto no *input mapping* |
